@@ -11,11 +11,13 @@ const router = new VueRouter({
   base: __dirname,
   routes: [
     {
-      path: '/base64', component: () => import('./components/TBase64')
+      path: '/', component: () => import('./components/TBase64')
     }, {
       path: '/hash', component: () => import('./components/THash')
     }, {
-      path: '/', component: () => import('./components/TBase64')
+      path: '/base64', component: () => import('./components/TBase64')
+    }, {
+      path: '/decimal', component: () => import('./components/TDecimal')
     }
   ]
 })

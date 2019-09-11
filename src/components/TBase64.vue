@@ -1,5 +1,5 @@
 <template>
-  <v-layout justify-center row fill-height text-center mt-5>
+  <v-layout justify-center row fill-height text-center>
     <v-flex xs6 text-center>
       <v-layout wrap text-center>
         <v-flex xs12>
