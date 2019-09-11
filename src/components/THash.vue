@@ -12,7 +12,8 @@
             label="编码文本"
             auto-grow
             value
-            disabled
+            append-icon="mdi-content-copy"
+            @click:append="copyToClipboard"
             :error-messages="errors"
           ></v-text-field>
         </v-flex>
@@ -45,6 +46,13 @@ const murmurHash3 = require("murmur-hash").v3;
 
 export default {
   methods: {
+    async copyToClipboard() {
+      try {
+        await navigator.clipboard.writeText(this.encodeText);
+      } catch (err) {
+        this.errors = [err];
+      }
+    },
     md5() {
       this.encodeText = CryptoJS.MD5(this.originText).toString();
     },
