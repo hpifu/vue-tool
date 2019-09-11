@@ -12,7 +12,8 @@
     </v-app-bar>-->
 
     <v-content>
-      <TBase64 />
+      <!-- <TBase64 /> -->
+      <THash />
     </v-content>
   </v-app>
 </template>
@@ -20,11 +21,13 @@
 <script>
 // import HelloWorld from './components/HelloWorld';
 import TBase64 from "./components/TBase64";
+import THash from "./components/THash";
 
 export default {
   name: "App",
   components: {
-    TBase64
+    TBase64,
+    THash
   },
   data: () => ({
     //
