@@ -3,7 +3,7 @@
     <v-flex xs6 text-center>
       <v-layout wrap text-center>
         <v-flex xs12>
-          <v-textarea v-model="text" outlined label="输入文本" auto-grow value :error-messages="errors"></v-textarea>
+          <v-textarea v-model="text" label="输入文本" outlined auto-grow :error-messages="errors"></v-textarea>
         </v-flex>
 
         <v-flex xs12>
@@ -91,7 +91,7 @@ export default {
   },
   data: () => {
     return {
-      text: "",
+      text: "你好，世界",
       errors: []
     };
   }
