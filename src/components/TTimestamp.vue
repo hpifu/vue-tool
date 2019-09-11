@@ -1,6 +1,6 @@
 <template>
   <v-layout justify-center row fill-height text-center>
-    <v-flex xs6 text-center>
+    <v-flex xs10 md8 lg8 xl6 text-center>
       <v-layout wrap text-center>
         <v-flex xs12>
           <v-text-field v-model="ts" outlined label="时间戳"></v-text-field>
@@ -12,13 +12,21 @@
           <v-text-field v-model="utctime" outlined label="UTC时间"></v-text-field>
         </v-flex>
       </v-layout>
+      <v-layout wrap text-left>
+
+      </v-layout>
     </v-flex>
   </v-layout>
 </template>
 
 
 <script>
+import VueMarkdown from "vue-markdown";
+
 export default {
+  components: {
+    VueMarkdown
+  },
   methods: {
     async copyToClipboard() {
       try {
