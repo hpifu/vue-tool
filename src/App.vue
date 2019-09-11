@@ -12,8 +12,8 @@
     </v-app-bar>-->
 
     <v-content>
-      <!-- <TBase64 /> -->
-      <THash />
+      <TBase64 />
+      <!-- <THash /> -->
     </v-content>
   </v-app>
 </template>

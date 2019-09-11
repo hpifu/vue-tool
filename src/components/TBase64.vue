@@ -3,45 +3,48 @@
     <v-flex xs6 text-center>
       <v-layout wrap text-center>
         <v-flex xs12>
-          <v-textarea v-model="originText" outlined label="原始文本" auto-grow value></v-textarea>
-        </v-flex>
-        <v-flex xs12>
-          <v-textarea
-            v-model="encodeText"
-            outlined
-            label="编码文本"
-            auto-grow
-            value
-            :error-messages="errors"
-          ></v-textarea>
+          <v-textarea v-model="text" outlined label="输入文本" auto-grow value :error-messages="errors"></v-textarea>
         </v-flex>
 
         <v-flex xs12>
-          <v-layout justify-center row fill-height text-center>
-            <v-flex xs3>
-              <v-switch
-                v-model="isurlsafe"
-                :label="isurlsafe ? 'urlsafe_base64': 'std_base64'"
-                color="primary"
-              ></v-switch>
-            </v-flex>
-            <v-flex xs2>
+          <v-layout justify-center row text-center>
+            <v-flex xs4>
               <v-btn
                 color="primary"
-                class="ml-5 mt-3"
-                @click="isurlsafe ? urlsafeB64encode() : b64encode()"
+                @click="stdBase64Encode"
+                class="my-3"
                 rounded
                 outlined
-              >编码</v-btn>
+              >std base64 编码</v-btn>
             </v-flex>
-            <v-flex xs2>
+            <v-flex xs4>
               <v-btn
                 color="primary"
-                class="mr-5 mt-3"
-                @click="isurlsafe ? urlsafeB64decode() : b64decode()"
+                @click="stdBase64Decode"
+                class="my-3"
                 rounded
                 outlined
-              >解码</v-btn>
+              >std base64 解码</v-btn>
+            </v-flex>
+          </v-layout>
+          <v-layout justify-center row text-center>
+            <v-flex xs4>
+              <v-btn
+                color="primary"
+                @click="urlBase64Encode"
+                class="my-3"
+                rounded
+                outlined
+              >url base64 编码</v-btn>
+            </v-flex>
+            <v-flex xs4>
+              <v-btn
+                color="primary"
+                @click="urlBase64Decode"
+                class="my-3"
+                rounded
+                outlined
+              >url base64 解码</v-btn>
             </v-flex>
           </v-layout>
         </v-flex>
@@ -56,14 +59,15 @@ const CryptoJS = require("crypto-js");
 
 export default {
   methods: {
-    b64encode() {
-      this.encodeText = CryptoJS.enc.Base64.stringify(
-        CryptoJS.enc.Utf8.parse(this.originText)
+    stdBase64Encode() {
+      this.text = CryptoJS.enc.Base64.stringify(
+        CryptoJS.enc.Utf8.parse(this.text)
       );
+      this.errors = [];
     },
-    b64decode() {
+    stdBase64Decode() {
       try {
-        this.originText = CryptoJS.enc.Base64.parse(this.encodeText).toString(
+        this.text = CryptoJS.enc.Base64.parse(this.text).toString(
           CryptoJS.enc.Utf8
         );
         this.errors = [];
@@ -71,27 +75,23 @@ export default {
         this.errors = [e.toString()];
       }
     },
-    urlsafeB64encode() {
+    urlBase64Encode() {
       var text = CryptoJS.enc.Base64.stringify(
-        CryptoJS.enc.Utf8.parse(this.originText)
+        CryptoJS.enc.Utf8.parse(this.text)
       );
-      this.encodeText = text
+      this.text = text
         .replace(/\+/g, "-")
         .replace(/\//g, "_")
         .replace(/=/g, "");
     },
-    urlsafeB64decode() {
-      var text = this.encodeText.replace(/-/g, "+").replace(/_/g, "/");
-      this.originText = CryptoJS.enc.Base64.parse(text).toString(
-        CryptoJS.enc.Utf8
-      );
+    urlBase64Decode() {
+      var text = this.text.replace(/-/g, "+").replace(/_/g, "/");
+      this.text = CryptoJS.enc.Base64.parse(text).toString(CryptoJS.enc.Utf8);
     }
   },
   data: () => {
     return {
-      isurlsafe: false,
-      originText: "",
-      encodeText: "",
+      text: "",
       errors: []
     };
   }
