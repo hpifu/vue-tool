@@ -3,13 +3,13 @@
     <v-flex xs6 text-center>
       <v-layout wrap text-center>
         <v-flex xs12>
-          <v-textarea v-model="text" outlined label="原始文本" auto-grow value></v-textarea>
+          <v-textarea v-model="text" outlined label="文本" auto-grow value></v-textarea>
         </v-flex>
         <v-flex xs12>
           <v-text-field
             v-model="code"
             outlined
-            label="编码文本"
+            label="签名"
             auto-grow
             value
             append-icon="mdi-content-copy"
@@ -20,17 +20,38 @@
 
         <v-flex xs12>
           <v-layout justify-center row fill-height text-center>
-            <v-flex xs3>
-              <v-btn color="primary" @click="md5" rounded outlined>md5</v-btn>
+            <v-flex xs6>
+              <v-btn color="primary" @click="md5" rounded depressed class="my-3" width="50%">md5</v-btn>
             </v-flex>
-            <v-flex xs3>
-              <v-btn color="primary" @click="murmur3_32" rounded outlined>murmur3_32</v-btn>
+            <v-flex xs6>
+              <v-btn
+                color="primary"
+                @click="murmur3_32"
+                rounded
+                depressed
+                class="my-3"
+                width="50%"
+              >murmur3_32</v-btn>
             </v-flex>
-            <v-flex xs3>
-              <v-btn color="primary" @click="murmur3_64" rounded outlined>murmur3_64</v-btn>
+            <v-flex xs6>
+              <v-btn
+                color="primary"
+                @click="murmur3_64"
+                rounded
+                depressed
+                class="my-3"
+                width="50%"
+              >murmur3_64</v-btn>
             </v-flex>
-            <v-flex xs3>
-              <v-btn color="primary" @click="murmur3_128" rounded outlined>murmur3_128</v-btn>
+            <v-flex xs6>
+              <v-btn
+                color="primary"
+                @click="murmur3_128"
+                rounded
+                depressed
+                class="my-3"
+                width="50%"
+              >murmur3_128</v-btn>
             </v-flex>
           </v-layout>
         </v-flex>

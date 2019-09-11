@@ -3,14 +3,7 @@
     <v-flex xs6 text-center>
       <v-layout wrap text-center>
         <v-flex xs10 pr-5>
-          <v-text-field
-            v-model="num1"
-            outlined
-            label="编码文本"
-            auto-grow
-            value
-            :error-messages="errors"
-          ></v-text-field>
+          <v-text-field v-model="num1" outlined label="原数" auto-grow :error-messages="errors"></v-text-field>
         </v-flex>
         <v-flex xs2>
           <v-select
@@ -24,9 +17,8 @@
           <v-text-field
             v-model="num2"
             outlined
-            label="编码文本"
+            label="新数"
             auto-grow
-            value
             append-icon="mdi-content-copy"
             @click:append="copyToClipboard"
             :error-messages="errors"

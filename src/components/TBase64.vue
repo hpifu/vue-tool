@@ -5,7 +5,7 @@
         <v-flex xs12>
           <v-textarea
             v-model="text"
-            label="输入文本"
+            label="文本"
             outlined
             auto-grow
             :error-messages="errors"
@@ -22,7 +22,7 @@
                 @click="stdBase64Encode"
                 class="my-3"
                 rounded
-                outlined
+                depressed
               >std base64 编码</v-btn>
             </v-flex>
             <v-flex xs4>
@@ -31,7 +31,7 @@
                 @click="stdBase64Decode"
                 class="my-3"
                 rounded
-                outlined
+                depressed
               >std base64 解码</v-btn>
             </v-flex>
           </v-layout>
@@ -42,7 +42,7 @@
                 @click="urlBase64Encode"
                 class="my-3"
                 rounded
-                outlined
+                depressed
               >url base64 编码</v-btn>
             </v-flex>
             <v-flex xs4>
@@ -51,7 +51,7 @@
                 @click="urlBase64Decode"
                 class="my-3"
                 rounded
-                outlined
+                depressed
               >url base64 解码</v-btn>
             </v-flex>
           </v-layout>
