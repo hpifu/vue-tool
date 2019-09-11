@@ -57,7 +57,12 @@ export default {
         return "";
       }
       const chars = "0123456789abcdefghijklmnopqrstuvwxyz";
-      return convertBase(this.num1, this.d1, this.d2)
+      var ctoi = {};
+      for (var i in chars) {
+        ctoi[chars.charAt(i)] = i;
+      }
+      var abc = this.num1.split("").map(c => ctoi[c]);
+      return convertBase(abc, this.d1, this.d2)
         .map(i => chars.charAt(i))
         .reduce((a, b) => a + b);
     }
