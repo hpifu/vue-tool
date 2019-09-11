@@ -18,6 +18,8 @@ const router = new VueRouter({
       path: '/base64', component: () => import('./components/TBase64')
     }, {
       path: '/decimal', component: () => import('./components/TDecimal')
+    }, {
+      path: '/timestamp', component: () => import('./components/TTimestamp')
     }
   ]
 })
