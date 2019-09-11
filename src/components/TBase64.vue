@@ -6,7 +6,14 @@
           <v-textarea v-model="originText" outlined label="原始文本" auto-grow value></v-textarea>
         </v-flex>
         <v-flex xs12>
-          <v-textarea v-model="encodeText" outlined label="编码文本" auto-grow value></v-textarea>
+          <v-textarea
+            v-model="encodeText"
+            outlined
+            label="编码文本"
+            auto-grow
+            value
+            :error-messages="errors"
+          ></v-textarea>
         </v-flex>
 
         <v-flex xs12>
@@ -55,9 +62,14 @@ export default {
       );
     },
     b64decode() {
-      this.originText = CryptoJS.enc.Base64.parse(this.encodeText).toString(
-        CryptoJS.enc.Utf8
-      );
+      try {
+        this.originText = CryptoJS.enc.Base64.parse(this.encodeText).toString(
+          CryptoJS.enc.Utf8
+        );
+        this.errors = [];
+      } catch (e) {
+        this.errors = [e.toString()];
+      }
     },
     urlsafeB64encode() {
       var text = CryptoJS.enc.Base64.stringify(
@@ -79,7 +91,8 @@ export default {
     return {
       isurlsafe: false,
       originText: "",
-      encodeText: ""
+      encodeText: "",
+      errors: []
     };
   }
 };
