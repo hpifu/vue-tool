@@ -80,7 +80,6 @@ export default {
   },
   data: () => {
     return {
-      isurlsafe: false,
       text: "你好，世界",
       code: "",
       errors: []
