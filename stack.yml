@@ -1,7 +1,7 @@
 version: "3.5"
 services:
   vue-tool:
-    image: hatlonely/vue-tool:v1.1.0
+    image: hatlonely/vue-tool:v1.0.0
     hostname: vue-tool
     deploy:
       replicas: 1
