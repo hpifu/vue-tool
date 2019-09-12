@@ -1,0 +1,14 @@
+version: "3.5"
+services:
+  vue-tool:
+    image: hatlonely/vue-tool:v1.1.0
+    hostname: vue-tool
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - vue-toolnet
+networks:
+  vue-toolnet:
+    name: vue-toolnet
