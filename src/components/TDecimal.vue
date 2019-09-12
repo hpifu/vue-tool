@@ -52,19 +52,38 @@ export default {
     }
   },
   computed: {
-    num2() {
-      if (!this.num1) {
-        return "";
+    num2: {
+      get() {
+        if (!this.num1) {
+          return "";
+        }
+        const chars = "0123456789abcdefghijklmnopqrstuvwxyz";
+        var ctoi = {};
+        for (var i in chars) {
+          ctoi[chars.charAt(i)] = parseInt(i);
+        }
+        return convertBase(
+          this.num1.split("").map(c => ctoi[c]),
+          this.d1,
+          this.d2
+        )
+          .map(i => chars.charAt(i))
+          .reduce((a, b) => a + b);
+      },
+      set(n) {
+        if (!n) {
+          this.num1 = "";
+          return;
+        }
+        const chars = "0123456789abcdefghijklmnopqrstuvwxyz";
+        var ctoi = {};
+        for (var i in chars) {
+          ctoi[chars.charAt(i)] = parseInt(i);
+        }
+        this.num1 = convertBase(n.split("").map(c => ctoi[c]), this.d2, this.d1)
+          .map(i => chars.charAt(i))
+          .reduce((a, b) => a + b);
       }
-      const chars = "0123456789abcdefghijklmnopqrstuvwxyz";
-      var ctoi = {};
-      for (var i in chars) {
-        ctoi[chars.charAt(i)] = i;
-      }
-      var abc = this.num1.split("").map(c => ctoi[c]);
-      return convertBase(abc, this.d1, this.d2)
-        .map(i => chars.charAt(i))
-        .reduce((a, b) => a + b);
     }
   },
   data: () => {
