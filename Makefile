@@ -2,13 +2,6 @@ repository=vue-tool
 user=hatlonely
 version=$(shell git describe --tags)
 
-UNAME_S := $(shell uname -s)
-ifeq ($(UNAME_S),Darwin)
-	sedi=sed -i ""
-else
-	sedi=sed -i
-endif
-
 .PHONY: buildenv
 buildenv:
 	docker run --name vue-build-env -d node:12.8.1-alpine tail -f /dev/null
@@ -22,7 +15,7 @@ image:
 	mkdir -p docker/
 	docker cp vue-build-env:/data/src/hpifu/${repository}/dist docker/
 	docker build --tag=hatlonely/${repository}:${version} .
-	${sedi} 's/image: ${user}\/${repository}:.*$$/image: ${user}\/${repository}:${version}/g' stack.yml
+	sed 's/image: ${user}\/${repository}:.*$$/image: ${user}\/${repository}:${version}/g' stack.tpl.yml > stack.yml
 
 .PHONY: deploy
 deploy:
