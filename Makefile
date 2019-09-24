@@ -2,19 +2,20 @@ repository=vue-tool
 user=hatlonely
 version=$(shell git describe --tags)
 
-UNAME_S := $(shell uname -s)
-ifeq ($(UNAME_S),Darwin)
-	sedi=sed -i ""
-else
-	sedi=sed -i
-endif
-
 .PHONY: buildenv
 buildenv:
-	docker run --name vue-build-env -d node:12.8.1-alpine tail -f /dev/null
+	if [ -z "$(shell docker ps --filter name=vue-build-env -q)" ]; then \
+		docker run --name vue-build-env -d node:12.10.0-alpine tail -f /dev/null; \
+	fi
+
+.PHONY: cleanbuildenv
+cleanbuildenv:
+	if [ ! -z "$(shell docker ps --filter name=vue-build-env -q)" ]; then \
+		docker stop vue-build-env && docker rm vue-build-env; \
+	fi
 
 .PHONY: image
-image:
+image: buildenv
 	docker exec -i vue-build-env rm -rf /data/src/hpifu/${repository}
 	docker exec -i vue-build-env mkdir -p /data/src/hpifu/${repository}
 	docker cp . vue-build-env:/data/src/hpifu/${repository}
@@ -22,7 +23,7 @@ image:
 	mkdir -p docker/
 	docker cp vue-build-env:/data/src/hpifu/${repository}/dist docker/
 	docker build --tag=hatlonely/${repository}:${version} .
-	${sedi} 's/image: ${user}\/${repository}:.*$$/image: ${user}\/${repository}:${version}/g' stack.yml
+	sed 's/image: ${user}\/${repository}:.*$$/image: ${user}\/${repository}:${version}/g' stack.tpl.yml > stack.yml
 
 .PHONY: deploy
 deploy:
