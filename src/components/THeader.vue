@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app clipped-left elevate-on-scroll class="pb-3" color="#fafafa">
-    <Logo />&nbsp;&nbsp;
-    <SubLogo />
+    <Logo value="HPiFu" />&nbsp;&nbsp;
+    <SubLogo value="tool" />
     <v-spacer></v-spacer>
   </v-app-bar>
 </template>

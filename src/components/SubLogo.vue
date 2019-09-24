@@ -1,5 +1,5 @@
 <template>
-  <span class="cyan--text hlogo-text">ancient</span>
+  <span class="cyan--text hlogo-text">{{value}}</span>
 </template>
 
 <style>
@@ -8,3 +8,13 @@ span.hlogo-text {
   font-size: 1.2rem;
 }
 </style>
+
+<script>
+export default {
+  props: {
+    value: {
+      default: "text"
+    }
+  }
+};
+</script>
