@@ -8,7 +8,8 @@ services:
       restart_policy:
         condition: on-failure
     networks:
-      - vue-toolnet
+      - online
 networks:
-  vue-toolnet:
-    name: vue-toolnet
+  online:
+    external: true
+    name: online
